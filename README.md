@@ -141,7 +141,7 @@ Follow these instructions to set up the project locally.
     └── package.json                # Node.js dependencies and scripts
 
 
-### Endpoints and API Documentation
+## Endpoints and API Documentation
 API documentation is available through the Django REST framework’s browsable API at /api once the backend server is running.
 
     User Authentication: /api/auth/login/, /api/auth/register/
@@ -155,7 +155,7 @@ API documentation is available through the Django REST framework’s browsable A
     Reports: /api/reports/
 
 
-### Contributing
+## Contributing
 
 Fork the repository.
 Create a new branch for your feature (git checkout -b feature-name).
