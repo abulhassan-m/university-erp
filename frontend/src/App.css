@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-box {
+      padding: 30px;
+      width: 90%;
+  }
+
+  .login-box h2 {
+      font-size: 1.6rem;
+  }
+
+  .input-group input {
+      padding: 10px;
+      font-size: 0.9rem;
+  }
+
+  .login-button {
+      padding: 10px;
+      font-size: 0.9rem;
+  }
+}
