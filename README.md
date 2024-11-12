@@ -140,7 +140,6 @@ Follow these instructions to set up the project locally.
     │   └── App.js                  # Main React app component
     └── package.json                # Node.js dependencies and scripts
 
----
 
 ### Endpoints and API Documentation
 API documentation is available through the Django REST framework’s browsable API at /api once the backend server is running.
@@ -155,7 +154,6 @@ API documentation is available through the Django REST framework’s browsable A
     Notifications: /api/notifications/
     Reports: /api/reports/
 
----
 
 ### Contributing
 
