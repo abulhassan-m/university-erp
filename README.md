@@ -142,7 +142,7 @@ Follow these instructions to set up the project locally.
 
 ---
 
-Endpoints and API Documentation
+### Endpoints and API Documentation
 API documentation is available through the Django REST framework’s browsable API at /api once the backend server is running.
 
     User Authentication: /api/auth/login/, /api/auth/register/
@@ -157,9 +157,12 @@ API documentation is available through the Django REST framework’s browsable A
 
 ---
 
-Contributing
+### Contributing
+
 Fork the repository.
 Create a new branch for your feature (git checkout -b feature-name).
 Commit your changes (git commit -m 'Add feature').
 Push to your branch (git push origin feature-name).
 Create a pull request.
+
+---
