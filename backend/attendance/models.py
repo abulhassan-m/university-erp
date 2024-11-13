@@ -1,5 +1,4 @@
 from django.db import models
-from courses.models import Course
 from django.contrib.auth.models import User
 from accounts.models import Student, Staff
     
@@ -10,6 +9,7 @@ class AttendanceRecord(models.Model):
         ('Leave', 'Leave'),
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=DATE_TYPE_CHOICES)
     is_student = models.BooleanField(default=True)
