@@ -1,0 +1,49 @@
+.payroll-list-container {
+    padding: 20px;
+}
+
+.payroll-list-container h2 {
+    color: #2575fc;
+    margin-bottom: 20px;
+}
+
+.payroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.payroll-table th, .payroll-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.payroll-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.payroll-table tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.view-button, .edit-button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.view-button {
+    background-color: #4CAF50;
+}
+
+.edit-button {
+    background-color: #2196F3;
+}
+
+.view-button:hover, .edit-button:hover {
+    opacity: 0.8;
+}

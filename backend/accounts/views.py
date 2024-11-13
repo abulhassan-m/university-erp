@@ -1,8 +1,8 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework import status
-from .models import User
-from .serializers import UserSerializer
+from .models import User, Student, Course, Exam, FeeInvoice
+from .serializers import UserSerializer, StudentSerializer, CourseSerializer, ExamSerializer, FeeInvoiceSerializer
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.utils.http import urlsafe_base64_encode
@@ -11,6 +11,23 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+class ExamViewSet(viewsets.ModelViewSet):
+    queryset = Exam.objects.all()
+    serializer_class = ExamSerializer
+
+class FeeInvoiceViewSet(viewsets.ModelViewSet):
+    queryset = FeeInvoice.objects.all()
+    serializer_class = FeeInvoiceSerializer
+
 
 # Initialize token generator
 token_generator = PasswordResetTokenGenerator()

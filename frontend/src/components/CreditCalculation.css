@@ -1,0 +1,98 @@
+.credit-calculation-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #3498db;
+    text-align: center;
+}
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
+}
+
+.credit-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.credit-card {
+    padding: 20px;
+    border-radius: 12px;
+    width: 250px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.credit-card h2 {
+    color: #34495e;
+}
+
+.credit-card p {
+    color: #555;
+}
+
+.credit-card.eligible {
+    border-left: 6px solid #2ecc71;
+}
+
+.credit-card.not-eligible {
+    border-left: 6px solid #e74c3c;
+}
+
+.credit-card:hover {
+    transform: scale(1.05);
+}
+
+.update-credit {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.update-credit h2 {
+    color: #333;
+}
+
+.update-credit input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 80%;
+}
+
+.update-credit button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.update-credit button:hover {
+    background-color: #2980b9;
+}

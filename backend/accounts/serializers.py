@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Student, Course, Exam, FeeInvoice
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +25,23 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(validated_data['password'])
         instance.save()
         return instance
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+class ExamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exam
+        fields = '__all__'
+
+class FeeInvoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeeInvoice
+        fields = '__all__'

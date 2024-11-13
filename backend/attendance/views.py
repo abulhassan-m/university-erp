@@ -1,40 +1,52 @@
-from rest_framework import viewsets
-from .models import AttendanceRecord
-from .serializers import AttendanceRecordSerializer
-from rest_framework.permissions import IsAuthenticated
+# attendance/views.py
+
+from rest_framework import viewsets, status
+from .models import AttendanceRecord, Session, LeaveRequest, CreditCalculation, PayrollRecord
+from .serializers import (AttendanceRecordSerializer, SessionSerializer, 
+                          LeaveRequestSerializer, CreditCalculationSerializer, PayrollRecordSerializer)
 from rest_framework.response import Response
-from rest_framework import status
 from rest_framework.decorators import action
-from datetime import date
 
 class AttendanceRecordViewSet(viewsets.ModelViewSet):
     queryset = AttendanceRecord.objects.all()
     serializer_class = AttendanceRecordSerializer
-    permission_classes = [IsAuthenticated]
 
-    def perform_create(self, serializer):
-        serializer.save()
+class SessionViewSet(viewsets.ModelViewSet):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
 
-    @action(detail=False, methods=['get'], url_path='course/(?P<course_id>[^/.]+)/date/(?P<attendance_date>[^/.]+)')
-    def get_course_attendance(self, request, course_id=None, attendance_date=None):
-        attendance_records = AttendanceRecord.objects.filter(course_id=course_id, date=attendance_date)
-        serializer = self.get_serializer(attendance_records, many=True)
+class LeaveRequestViewSet(viewsets.ModelViewSet):
+    queryset = LeaveRequest.objects.all()
+    serializer_class = LeaveRequestSerializer
+
+class CreditCalculationViewSet(viewsets.ModelViewSet):
+    queryset = CreditCalculation.objects.all()
+    serializer_class = CreditCalculationSerializer
+
+class PayrollRecordViewSet(viewsets.ModelViewSet):
+    queryset = PayrollRecord.objects.all()
+    serializer_class = PayrollRecordSerializer
+
+class CreditCalculationViewSet(viewsets.ViewSet):
+    queryset = CreditCalculation.objects.all()
+    serializer_class = CreditCalculationSerializer
+
+    # Endpoint to retrieve all student credits
+    def list(self, request):
+        credits = CreditCalculation.objects.all()
+        serializer = CreditCalculationSerializer(credits, many=True)
         return Response(serializer.data)
 
-    @action(detail=True, methods=['post'], url_path='mark-attendance')
-    def mark_attendance(self, request, pk=None):
-        student_id = request.data.get('student')
-        attendance_date = request.data.get('date', date.today())
-        is_present = request.data.get('is_present', True)
+    # Endpoint to update credits for a specific student
+    @action(detail=True, methods=['patch'])
+    def update_credits(self, request, pk=None):
+        try:
+            credit_record = CreditCalculation.objects.get(pk=pk)
+        except CreditCalculation.DoesNotExist:
+            return Response({"error": "Credit record not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        attendance_record, created = AttendanceRecord.objects.update_or_create(
-            course_id=pk,
-            student_id=student_id,
-            date=attendance_date,
-            defaults={'is_present': is_present}
-        )
-
-        if created:
-            return Response({"status": "attendance marked"}, status=status.HTTP_201_CREATED)
-        else:
-            return Response({"status": "attendance updated"}, status=status.HTTP_200_OK)
+        serializer = CreditCalculationSerializer(credit_record, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
