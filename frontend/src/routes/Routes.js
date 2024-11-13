@@ -6,6 +6,13 @@ import ForgotPassword from '../components/ForgotPassword';
 import Dashboard from '../components/Dashboard'; // Assume a Dashboard component exists
 import Students from '../components/Students';
 import Attendance from '../components/Attendance';
+import StudentDashboard from './components/StudentDashboard';
+import StudentRegistration from './components/StudentRegistration';
+import AttendanceTracker from './components/AttendanceTracker';
+import TimePeriodTableViewer from './components/TimePeriodTableViewer';
+import ExamTimeTable from './components/ExamTimeTable';
+import ExamResultsViewer from './components/ExamResultsViewer';
+import LeaveRequestForm from './components/LeaveRequestForm';
 
 const AppRoutes = () => (
     <Router>
@@ -16,7 +23,14 @@ const AppRoutes = () => (
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/students" element={<Students />} />
-            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/attendances" element={<Attendance />} />   
+            <Route path="/students-db" element={<StudentDashboard />} />
+            <Route path="/register" element={<StudentRegistration />} />
+            <Route path="/attendance" element={<AttendanceTracker />} />
+            <Route path="/daily-schedule" element={<TimePeriodTableViewer />} />
+            <Route path="/exam-schedule" element={<ExamTimeTable />} />
+            <Route path="/exam-results" element={<ExamResultsViewer />} />
+            <Route path="/leave-request" element={<LeaveRequestForm />} />
             {/* <Route path="/" element={<Login />} /> 
              Add other routes for courses, exams, etc. */}
         </Routes>

@@ -16,4 +16,5 @@ urlpatterns = [
     path('api/accounts/', include('accounts.urls')),
     path('api/users/', UserList.as_view(), name='user-list'),
     path('api/auth/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/student/', include('student.urls')),
 ]
