@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import AttendanceRecord, Session, LeaveRequest, CreditCalculation, PayrollRecord
 
-class AttendanceRecordSerializer(serializers.ModelSerializer):
+class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = AttendanceRecord
         fields = '__all__'

@@ -2,11 +2,11 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (AttendanceRecordViewSet, SessionViewSet, LeaveRequestViewSet, 
+from .views import (AttendanceViewSet, SessionViewSet, LeaveRequestViewSet, 
                     CreditCalculationViewSet, PayrollRecordViewSet)
 
 router = DefaultRouter()
-router.register(r'attendance', AttendanceRecordViewSet)
+router.register(r'attendance', AttendanceViewSet)
 router.register(r'sessions', SessionViewSet)
 router.register(r'leave-requests', LeaveRequestViewSet)
 router.register(r'credit-calculations', CreditCalculationViewSet)

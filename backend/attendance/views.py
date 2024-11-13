@@ -1,15 +1,29 @@
-# attendance/views.py
-
 from rest_framework import viewsets, status
-from .models import AttendanceRecord, Session, LeaveRequest, CreditCalculation, PayrollRecord
-from .serializers import (AttendanceRecordSerializer, SessionSerializer, 
+from .models import AttendanceRecord, Session, LeaveRequest, CreditCalculation, PayrollRecord, Staff
+from .serializers import (AttendanceSerializer, SessionSerializer, AttendanceSerializer,
                           LeaveRequestSerializer, CreditCalculationSerializer, PayrollRecordSerializer)
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-class AttendanceRecordViewSet(viewsets.ModelViewSet):
+
+class AttendanceViewSet(viewsets.ModelViewSet):
     queryset = AttendanceRecord.objects.all()
-    serializer_class = AttendanceRecordSerializer
+    serializer_class = AttendanceSerializer
+
+    def create(self, request, *args, **kwargs):
+        staff_id = request.data.get('staff')
+        staff = Staff.objects.get(id=staff_id)
+        date = request.data.get('date')
+        status = request.data.get('status')
+
+        attendance, created = AttendanceRecord.objects.get_or_create(
+            staff=staff, date=date, defaults={'status': status}
+        )
+        if not created:
+            attendance.status = status
+            attendance.save()
+
+        return Response({'message': 'Attendance updated successfully'})
 
 class SessionViewSet(viewsets.ModelViewSet):
     queryset = Session.objects.all()

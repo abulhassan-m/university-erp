@@ -1,13 +1,12 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from rest_framework import status
-from .models import User, Student, Course, Exam, FeeInvoice
-from .serializers import UserSerializer, StudentSerializer, CourseSerializer, ExamSerializer, FeeInvoiceSerializer
-from django.contrib.auth.models import User
+from .models import Staff, Payroll, Task, Student, FeeInvoice, User
+from .serializers import (UserSerializer, StudentSerializer, 
+                          FeeInvoiceSerializer,  StaffSerializer, PayrollSerializer, TaskSerializer)
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
@@ -15,14 +14,6 @@ from django.conf import settings
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-
-class CourseViewSet(viewsets.ModelViewSet):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-
-class ExamViewSet(viewsets.ModelViewSet):
-    queryset = Exam.objects.all()
-    serializer_class = ExamSerializer
 
 class FeeInvoiceViewSet(viewsets.ModelViewSet):
     queryset = FeeInvoice.objects.all()
@@ -70,3 +61,29 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({"detail": "Cannot delete super admin"}, status=status.HTTP_403_FORBIDDEN)
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class StaffViewSet(viewsets.ModelViewSet):
+    queryset = Staff.objects.all()
+    serializer_class = StaffSerializer
+
+class PayrollViewSet(viewsets.ModelViewSet):
+    queryset = Payroll.objects.all()
+    serializer_class = PayrollSerializer
+
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+    def create(self, request, *args, **kwargs):
+        staff_id = request.data.get('staff')
+        staff = Staff.objects.get(id=staff_id)
+        task_title = request.data.get('task_title')
+        task_description = request.data.get('task_description')
+        due_date = request.data.get('due_date')
+
+        task = Task.objects.create(
+            staff=staff, task_title=task_title, task_description=task_description, due_date=due_date
+        )
+
+        return Response({'message': 'Task assigned successfully'})

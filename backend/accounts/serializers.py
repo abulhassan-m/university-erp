@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Student, Course, Exam, FeeInvoice
+from .models import User, Student, FeeInvoice, Staff, Payroll, Task
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,17 +31,23 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = '__all__'
 
-class CourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = '__all__'
-
-class ExamSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Exam
-        fields = '__all__'
-
 class FeeInvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeeInvoice
+        fields = '__all__'
+
+class StaffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Staff
+        fields = '__all__'
+
+class PayrollSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payroll
+        fields = '__all__'
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
         fields = '__all__'

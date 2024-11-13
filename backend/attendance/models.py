@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from accounts.models import Student, Staff
+from django.conf import settings
     
 class AttendanceRecord(models.Model):
     DATE_TYPE_CHOICES = [
@@ -8,7 +8,7 @@ class AttendanceRecord(models.Model):
         ('Absent', 'Absent'),
         ('Leave', 'Leave'),
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=DATE_TYPE_CHOICES)
@@ -33,7 +33,7 @@ class LeaveRequest(models.Model):
         ('Approved', 'Approved'),
         ('Rejected', 'Rejected'),
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     reason = models.TextField()

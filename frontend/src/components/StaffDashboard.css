@@ -1,0 +1,13 @@
+.staff-dashboard-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.staff-card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.staff-card:hover {
+    transform: translateY(-5px);
+}

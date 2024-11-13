@@ -3,12 +3,12 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from users.views import UserList, CustomTokenObtainPairView
 from courses.views import CourseViewSet, AssignmentViewSet
-from attendance.views import AttendanceRecordViewSet
+from attendance.views import AttendanceViewSet
 
 router = DefaultRouter()
 router.register(r'courses', CourseViewSet)
 router.register(r'assignments', AssignmentViewSet)
-router.register(r'attendance', AttendanceRecordViewSet)
+router.register(r'attendance', AttendanceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
