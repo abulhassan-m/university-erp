@@ -1,74 +1,53 @@
 import React from 'react';
-// import { Bar } from 'react-chartjs-2';
-import './Dashboard.css';
-
-// Sample chart data for students per department
-/* const data = {
-    labels: ['Engineering', 'Business', 'Arts', 'Science', 'Law'],
-    datasets: [
-        {
-            label: 'Students',
-            data: [250, 200, 150, 180, 120],
-            backgroundColor: '#6a11cb',
-            hoverBackgroundColor: '#2575fc',
-        },
-    ],
-}; */
+import { Container, Grid, Card, CardContent, Typography, CardActionArea, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+import SchoolIcon from '@mui/icons-material/School';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import PeopleIcon from '@mui/icons-material/People';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ReportIcon from '@mui/icons-material/Report';
 
 const Dashboard = () => {
+    const modules = [
+        { name: 'Student', path: '/students-db', icon: <SchoolIcon fontSize="large" /> },
+        { name: 'Staff Management', path: '/staff-management', icon: <PeopleIcon fontSize="large" /> },
+        { name: 'Attendance Tracking', path: '/attendance-tracker', icon: <EventAvailableIcon fontSize="large" /> },
+        { name: 'Fee Management', path: '/fee-structure', icon: <AttachMoneyIcon fontSize="large" /> },
+        { name: 'Course Management', path: '/course-management', icon: <LibraryBooksIcon fontSize="large" /> },
+        { name: 'Examination', path: '/exam-management', icon: <AssignmentIcon fontSize="large" /> },
+        { name: 'Notifications', path: '/notifications', icon: <NotificationsActiveIcon fontSize="large" /> },
+        { name: 'Reports', path: '/reports', icon: <ReportIcon fontSize="large" /> },
+    ];
+
     return (
-        <div className="dashboard-container">
-            <header className="dashboard-header">
-                <h1>Welcome to the University Dashboard</h1>
-                <p>Your one-stop overview of key university operations.</p>
-            </header>
-
-            <section className="dashboard-cards">
-                <div className="card">
-                    <h3>Total Students</h3>
-                    <p>1,200</p>
-                </div>
-                <div className="card">
-                    <h3>Total Staff</h3>
-                    <p>250</p>
-                </div>
-                <div className="card">
-                    <h3>Courses Offered</h3>
-                    <p>80</p>
-                </div>
-                <div className="card">
-                    <h3>Library Books</h3>
-                    <p>5,000+</p>
-                </div>
-            </section>
-
-            <section className="dashboard-chart">
-                <h2>Student Distribution by Department</h2>
-                {/*<Bar data={data} />*/}
-            </section>
-
-            <section className="dashboard-links">
-                <h2>Quick Links</h2>
-                <div className="link-cards">
-                    <div className="link-card" onClick={() => alert('Go to Student Records')}>
-                        <h3>Student Records</h3>
-                        <p>View and manage student records</p>
-                    </div>
-                    <div className="link-card" onClick={() => alert('Go to Attendance')}>
-                        <h3>Attendance</h3>
-                        <p>Track student attendance</p>
-                    </div>
-                    <div className="link-card" onClick={() => alert('Go to Fee Management')}>
-                        <h3>Fee Management</h3>
-                        <p>Manage fees and invoices</p>
-                    </div>
-                    <div className="link-card" onClick={() => alert('Go to Library')}>
-                        <h3>Library</h3>
-                        <p>Manage library resources</p>
-                    </div>
-                </div>
-            </section>
-        </div>
+        <Container maxWidth="lg" sx={{ mt: 5 }}>
+            <Box display="flex" justifyContent="center" alignItems="center" mb={4}>
+                <Typography variant="h3" color="primary" fontWeight="bold">
+                    University ERP Dashboard
+                </Typography>
+                <DashboardIcon color="primary" fontSize="large" sx={{ ml: 2 }} />
+            </Box>
+            <Grid container spacing={4}>
+                {modules.map((module, index) => (
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                        <Card sx={{ boxShadow: 3, transition: '0.3s', '&:hover': { boxShadow: 6 } }}>
+                            <CardActionArea component={Link} to={module.path} sx={{ padding: '20px', textAlign: 'center' }}>
+                                <Box color="primary.main">{module.icon}</Box>
+                                <CardContent>
+                                    <Typography variant="h6" color="textSecondary">
+                                        {module.name}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
     );
 };
 

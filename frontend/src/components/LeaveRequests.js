@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './LeaveRequests.css';
 
 const LeaveRequests = () => {
     const [leaveRequests, setLeaveRequests] = useState([]);
