@@ -6,13 +6,16 @@ import ForgotPassword from '../components/ForgotPassword';
 import Dashboard from '../components/Dashboard'; // Assume a Dashboard component exists
 import Students from '../components/Students';
 import Attendance from '../components/Attendance';
-import StudentDashboard from './components/StudentDashboard';
-import StudentRegistration from './components/StudentRegistration';
-import AttendanceTracker from './components/AttendanceTracker';
-import TimePeriodTableViewer from './components/TimePeriodTableViewer';
-import ExamTimeTable from './components/ExamTimeTable';
-import ExamResultsViewer from './components/ExamResultsViewer';
-import LeaveRequestForm from './components/LeaveRequestForm';
+import StudentDashboard from '../components/StudentDashboard';
+import StudentRegistration from '../components/StudentRegistration';
+import AttendanceTracker from '../components/AttendanceTracker';
+import TimePeriodTableViewer from '../components/TimePeriodTableViewer';
+import ExamTimeTable from '../components/ExamTimeTable';
+import ExamResultsViewer from '../components/ExamResultsViewer';
+import LeaveRequestForm from '../components/LeaveRequestForm';
+import FeeStructure from '../components/FeeStructure';
+import StudentFeePayment from '../components/StudentFeePayment';
+import FeeAlerts from '../components/FeeAlerts';
 
 const AppRoutes = () => (
     <Router>
@@ -31,6 +34,9 @@ const AppRoutes = () => (
             <Route path="/exam-schedule" element={<ExamTimeTable />} />
             <Route path="/exam-results" element={<ExamResultsViewer />} />
             <Route path="/leave-request" element={<LeaveRequestForm />} />
+                <Route path="/fee-structure" element={<FeeStructure />} />
+                <Route path="/student-fee-payment" element={<StudentFeePayment studentId={1} />} /> {/* Pass in actual student ID */}
+                <Route path="/fee-alerts" element={<FeeAlerts />} />
             {/* <Route path="/" element={<Login />} /> 
              Add other routes for courses, exams, etc. */}
         </Routes>

@@ -3,7 +3,7 @@ import React from 'react';
 import './Dashboard.css';
 
 // Sample chart data for students per department
-const data = {
+/* const data = {
     labels: ['Engineering', 'Business', 'Arts', 'Science', 'Law'],
     datasets: [
         {
@@ -13,7 +13,7 @@ const data = {
             hoverBackgroundColor: '#2575fc',
         },
     ],
-};
+}; */
 
 const Dashboard = () => {
     return (

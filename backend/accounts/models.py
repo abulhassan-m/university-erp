@@ -62,7 +62,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.username
 
 
-class Student(models.Model):
+class StudentUser(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     enrollment_number = models.CharField(max_length=20, unique=True)
     department = models.CharField(max_length=100)
@@ -122,7 +122,7 @@ class Task(models.Model):
         return self.task_title
 
 class FeeInvoice(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(StudentUser, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     is_paid = models.BooleanField(default=False)
 

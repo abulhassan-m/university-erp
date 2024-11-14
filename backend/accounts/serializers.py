@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Student, FeeInvoice, Staff, Payroll, Task
+from .models import User, StudentUser, FeeInvoice, Staff, Payroll, Task
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,7 +28,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
+        model = StudentUser
         fields = '__all__'
 
 class FeeInvoiceSerializer(serializers.ModelSerializer):

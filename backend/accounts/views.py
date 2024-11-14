@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from .models import Staff, Payroll, Task, Student, FeeInvoice, User
+from .models import Staff, Payroll, Task, StudentUser, FeeInvoice, User
 from .serializers import (UserSerializer, StudentSerializer, 
                           FeeInvoiceSerializer,  StaffSerializer, PayrollSerializer, TaskSerializer)
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
@@ -11,8 +11,8 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
 
-class StudentViewSet(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
+class StudentUserViewSet(viewsets.ModelViewSet):
+    queryset = StudentUser.objects.all()
     serializer_class = StudentSerializer
 
 class FeeInvoiceViewSet(viewsets.ModelViewSet):

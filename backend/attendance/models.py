@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import Student, Staff
+from accounts.models import StudentUser, Staff
 from django.conf import settings
     
 class AttendanceRecord(models.Model):
@@ -18,7 +18,7 @@ class AttendanceRecord(models.Model):
         return f"{self.user.username} - {self.date} - {self.status}"
 
 class Session(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(StudentUser, on_delete=models.CASCADE)
     subject = models.CharField(max_length=100)
     start_time = models.TimeField()
     end_time = models.TimeField()
@@ -43,7 +43,7 @@ class LeaveRequest(models.Model):
         return f"{self.user.username} - {self.status} ({self.start_date} to {self.end_date})"
 
 class CreditCalculation(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(StudentUser, on_delete=models.CASCADE)
     total_credits = models.FloatField(default=0)
     required_credits = models.FloatField(default=75)  # Minimum credits for exam eligibility
 

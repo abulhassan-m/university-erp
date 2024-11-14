@@ -1,44 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, Typography, Grid, Button } from '@mui/material';
+import React from 'react';
+import { Button, Container, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import './StaffDashboard.css';
 
 const StaffDashboard = () => {
-    const [staffData, setStaffData] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:8000/api/staff/')
-            .then((response) => response.json())
-            .then((data) => setStaffData(data));
-    }, []);
-
     return (
-        <div className="staff-dashboard-container">
-            <h1>Staff Management Dashboard</h1>
-            <Grid container spacing={2}>
-                {staffData.map((staff) => (
-                    <Grid item xs={12} sm={6} md={4} key={staff.id}>
-                        <Card className="staff-card">
-                            <CardContent>
-                                <Typography variant="h6">{staff.user.username}</Typography>
-                                <Typography variant="body2">{staff.role}</Typography>
-                                <Typography variant="body2">Department: {staff.department}</Typography>
-                                <Typography variant="body2">Salary: {staff.salary}</Typography>
-                                <Button
-                                    component={Link}
-                                    to={`/staff/${staff.id}`}
-                                    variant="contained"
-                                    color="primary"
-                                    fullWidth
-                                >
-                                    View Details
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                ))}
+        <Container>
+            <Typography variant="h3">Staff Dashboard</Typography>
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Button component={Link} to="/staff-registration" fullWidth variant="contained">Registration</Button>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Button component={Link} to="/attendance-manager" fullWidth variant="contained">Attendance</Button>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Button component={Link} to="/exam-questions" fullWidth variant="contained">Exam Questions</Button>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Button component={Link} to="/exam-results" fullWidth variant="contained">Exam Results</Button>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Button component={Link} to="/payroll" fullWidth variant="contained">Payroll</Button>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Button component={Link} to="/leave-management" fullWidth variant="contained">Leave Management</Button>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Button component={Link} to="/performance-tracker" fullWidth variant="contained">Performance Tracker</Button>
+                </Grid>
             </Grid>
-        </div>
+        </Container>
     );
 };
 
