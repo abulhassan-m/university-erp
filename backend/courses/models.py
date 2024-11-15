@@ -1,18 +1,27 @@
 from django.db import models
-from users.models import User
 
 class Course(models.Model):
-    name = models.CharField(max_length=100)
-    code = models.CharField(max_length=10, unique=True)
-    credits = models.IntegerField()
+    title = models.CharField(max_length=100)
     description = models.TextField()
-    faculty = models.ForeignKey(User, on_delete=models.CASCADE, related_name="courses")
+    credits = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return self.title
+
+class Schedule(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='schedules')
+    day = models.CharField(max_length=10)  # e.g., Monday, Tuesday
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.course.title} - {self.day} ({self.start_time} to {self.end_time})"
 
 class Assignment(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="assignments")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='assignments')
     title = models.CharField(max_length=100)
-    due_date = models.DateField()
     description = models.TextField()
+    due_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.course.title} - {self.title}"
