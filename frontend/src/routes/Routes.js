@@ -32,6 +32,8 @@ import StudentFeePayment from '../components/StudentFeePayment';
 import StudentRegistration from '../components/StudentRegistration';
 import TimePeriodTableViewer from '../components/TimePeriodTableViewer';
 import LandingPage from '../pages/LandingPage';
+import CourseList from '../components/CourseList';
+import CourseDetails from '../components/CourseDetails';
 
 const AppRoutes = () => (
     <Router>
@@ -42,6 +44,8 @@ const AppRoutes = () => (
             <Route path="/attendance-manage" element={<AttendanceManager />} />
             <Route path="/attendance" element={<AttendanceTracker />} />
             <Route path="/credit-cal" element={<CreditCalculation />} />
+            <Route path="/courses" element={<CourseList />} />
+            <Route path="/courses/:courseId" element={<CourseDetails />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/exam-q-manager" element={<ExamQuestionManager />} />
             <Route path="/exam-results-entry" element={<ExamResultEntry />} />

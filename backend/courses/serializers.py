@@ -1,12 +1,17 @@
 from rest_framework import serializers
-from .models import Course, Assignment
+from .models import Course, Schedule, Assignment
 
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ['id', 'title', 'description', 'credits']
+
+class ScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Schedule
+        fields = ['id', 'course', 'day', 'start_time', 'end_time']
 
 class AssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assignment
-        fields = '__all__'
+        fields = ['id', 'course', 'title', 'description', 'due_date']

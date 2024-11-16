@@ -1,14 +1,15 @@
 from rest_framework import viewsets
-from .models import Course, Assignment
-from .serializers import CourseSerializer, AssignmentSerializer
-from rest_framework.permissions import IsAuthenticated
+from .models import Course, Schedule, Assignment
+from .serializers import CourseSerializer, ScheduleSerializer, AssignmentSerializer
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAuthenticated]
+
+class ScheduleViewSet(viewsets.ModelViewSet):
+    queryset = Schedule.objects.all()
+    serializer_class = ScheduleSerializer
 
 class AssignmentViewSet(viewsets.ModelViewSet):
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
-    permission_classes = [IsAuthenticated]
