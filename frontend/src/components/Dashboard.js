@@ -17,7 +17,7 @@ const Dashboard = () => {
         { name: 'Staff Management', path: '/staff-management', icon: <PeopleIcon fontSize="large" /> },
         { name: 'Attendance Tracking', path: '/attendance-tracker', icon: <EventAvailableIcon fontSize="large" /> },
         { name: 'Fee Management', path: '/fee-structure', icon: <AttachMoneyIcon fontSize="large" /> },
-        { name: 'Course Management', path: '/course-management', icon: <LibraryBooksIcon fontSize="large" /> },
+        { name: 'Course Management', path: '/courses', icon: <LibraryBooksIcon fontSize="large" /> },
         { name: 'Examination', path: '/exam-management', icon: <AssignmentIcon fontSize="large" /> },
         { name: 'Notifications', path: '/notifications', icon: <NotificationsActiveIcon fontSize="large" /> },
         { name: 'Reports', path: '/reports', icon: <ReportIcon fontSize="large" /> },
